@@ -5,14 +5,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
   <title>ReactChat - Developed by Samarth</title>
+  <meta name="description" content="ReactChat - A communication platform for tech enthusiasts developed by Samarth.">
+  <meta name="keywords" content="ReactChat, chat application, tech community, communication platform">
+  <meta name="author" content="Samarth">
+  <link rel="icon" href="/path/to/favicon.ico">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="style.css" rel="stylesheet" type="text/css" />
   <script type="module">
-    // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
     import { getFirestore, collection, addDoc, serverTimestamp, query, orderBy, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-firestore.js";
 
-    // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: "AIzaSyBi-hhtVklicqNdVLudIja3yGLibUCZdD4",
       authDomain: "reactchat-sam.firebaseapp.com",
@@ -24,11 +26,9 @@
       measurementId: "G-1EH8Q8MC2G"
     };
 
-    // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
 
-    // Function to display message
     function displayMessage(text) {
       const messagesContainer = document.getElementById('messages');
       const messageElement = document.createElement('div');
@@ -55,7 +55,6 @@
       }
     });
 
-    // Retrieve messages
     const messagesQuery = query(collection(db, 'messages'), orderBy('timestamp'));
     onSnapshot(messagesQuery, snapshot => {
       const messagesContainer = document.getElementById('messages');
@@ -69,7 +68,6 @@
 </head>
 
 <body class='bg-gray-900'>
-  <!-- Header -->
   <header class="text-gray-400 bg-gray-900 body-font">
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
       <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
@@ -86,17 +84,17 @@
     </div>
   </header>
 
-  <!-- Chat Section -->
   <section class="flex items-center justify-center py-8 px-4">
-    <div class="flex flex-col w-full lg:w-2/3 sm:px-0 bg-gray-800 rounded-lg shadow-md">
+    <div class="flex flex-col w-full max-w-2xl bg-gray-800 rounded-lg shadow-md">
       <!-- Messages Container -->
       <div id="messages" class="p-4 mb-4 h-96 overflow-y-auto">
         <!-- Messages will appear here -->
       </div>
 
       <!-- Input Section -->
-      <div class="flex  fixed bottom-0 lg:w-2/3 sm:space-x-4 p-4">
+      <div class="flex p-4 space-x-4">
         <div class="relative flex-grow w-full">
+          <label for="msg" class="sr-only">Message</label>
           <input type="text" id="msg" name="msg" placeholder="Type a message" class="w-full bg-gray-900 rounded border border-gray-700 focus:border-purple-500 focus:ring-2 focus:ring-purple-900 focus:bg-transparent text-base outline-none text-gray-100 py-2 px-4 leading-8 transition-colors duration-200 ease-in-out">
         </div>
         <button id="sendButton" aria-label="Send message" class="text-white bg-purple-500 border-0 py-2 px-8 focus:outline-none hover:bg-purple-600 rounded text-lg">Send</button>
@@ -104,5 +102,4 @@
     </div>
   </section>
 </body>
-
-</html>
+  </html>
